@@ -39,6 +39,7 @@ public class MouseManager implements MouseMotionListener, MouseListener {
                 clickPos.setX(position.getX());
                 clickPos.setY(position.getY());
             }
+
             leftMouseButton = true;
         if (e.getButton() == MouseEvent.BUTTON3)
             rightMouseButton = true;

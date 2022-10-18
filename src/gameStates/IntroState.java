@@ -3,6 +3,7 @@ package gameStates;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import gameStates.game.GameState;
@@ -18,14 +19,12 @@ public class IntroState extends State {
 	private int ticks;
 	private int imgSize;
 
-	private final int FADE_LENGTH;
-	private final int WAIT_LENGTH;
+	private static final int FADE_LENGTH = 60;
+	private static final int WAIT_LENGTH = 60;
 
 	IntroState(GameStateManager gsm) {
 		super(gsm);
 		init();
-		FADE_LENGTH = 60;
-		WAIT_LENGTH = 60;
 
 		imgSize = (int) (GamePanel.HEIGHT * 0.5);
 
@@ -60,27 +59,25 @@ public class IntroState extends State {
 	}
 
 	public void draw(Graphics2D g) {
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.BLACK);
+
+		g.setColor(bgColor);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 
 		if (ticks > 0) {
-			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g.drawImage(
 					logo,
-					GamePanel.WIDTH / 2 - imgSize / 2,
-					GamePanel.HEIGHT / 2 - imgSize / 2,
-					imgSize,
-					imgSize,
-					null);
+					GamePanel.WIDTH / 2 - imgSize / 2, GamePanel.HEIGHT / 2 - imgSize / 2,
+					imgSize, imgSize,
+					null
+			);
 
-			g.setColor(new Color(0, 0, 0, alpha));
+			g.setColor(new Color(12, 0, 22, alpha));
 			g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		}
 	}
 
 	public void handleInput() {
-		if (KeyboardHandler.isKeyPressed(KeyboardHandler.KEY_BOOST)) {
+		if (KeyboardHandler.isKeyPressed(KeyEvent.VK_SPACE)) {
 			gsm.setState(new GameState(gsm));
 		}
 	}

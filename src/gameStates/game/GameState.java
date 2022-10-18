@@ -44,7 +44,7 @@ public class GameState extends State {
         startMenuButtons.addButton("PLAY", this::startGame);
         startMenuButtons.addButton("QUIT", () -> System.exit(0));
 
-        pauseMenuButtons = new ButtonPanel(GamePanel.WIDTH/4, GamePanel.HEIGHT/2, GamePanel.WIDTH/2, GamePanel.HEIGHT/3, 3);
+        pauseMenuButtons = new ButtonPanel(GamePanel.WIDTH/4, GamePanel.HEIGHT/2, GamePanel.WIDTH/2, GamePanel.HEIGHT/2 - 30, 3);
         pauseMenuButtons.addButton("RESUME", () -> menu = paused = false);
         pauseMenuButtons.addButton("RESTART", this::startGame);
         pauseMenuButtons.addButton("QUIT", () -> System.exit(0));
@@ -112,7 +112,7 @@ public class GameState extends State {
     public void draw(Graphics2D g) {
 
         // Fill Background
-        g.setColor(Color.DARK_GRAY);
+        g.setColor(bgColor);
         g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 
         world.draw(g);
@@ -137,8 +137,8 @@ public class GameState extends State {
             } else {
 
                 // draw background snakes
-                for (int i = 0; i < bgSnakes.length; i++) {
-                    bgSnakes[i].draw(g);
+                for (Snake bgSnake : bgSnakes) {
+                    bgSnake.draw(g);
                 }
 
                 // dim the background
@@ -156,7 +156,7 @@ public class GameState extends State {
 
             // draw transition
             if (eventStart) {
-                g.setColor(Color.BLACK);
+                g.setColor(bgColor);
                 tb.forEach(g::fill);
             }
 

@@ -13,14 +13,13 @@ public class KeyboardHandler implements KeyListener {
     public static int KEY_MOVE_LEFT = KeyEvent.VK_A;
     public static int KEY_MOVE_RIGHT = KeyEvent.VK_D;
     public static int KEY_MOVE_DOWN = KeyEvent.VK_S;
-    public static int KEY_BOOST = KeyEvent.VK_SPACE;
     public static int KEY_PAUSE = KeyEvent.VK_ESCAPE;
 
     public KeyboardHandler() {
         super();
 
-        keyPressed = new ArrayList<>(16);
-        lastKeyPressed = new ArrayList<>(16);
+        keyPressed = new ArrayList<>(4);
+        lastKeyPressed = new ArrayList<>(4);
     }
 
     public static void update() {
@@ -37,19 +36,15 @@ public class KeyboardHandler implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         if (!keyPressed.contains(e.getKeyCode())) keyPressed.add(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
         if (keyPressed.contains(e.getKeyCode())) keyPressed.remove(((Integer) e.getKeyCode()));
     }
 }
