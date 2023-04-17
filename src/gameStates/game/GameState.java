@@ -88,7 +88,6 @@ public class GameState extends State {
                 }
             }
 
-
         } else {
             if (player.isDead()) {
 
@@ -103,6 +102,7 @@ public class GameState extends State {
 
                 world.update();
                 player.update();
+
                 if (player.isDead())
                     eventCount = 0;
             }
